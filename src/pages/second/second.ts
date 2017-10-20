@@ -1,25 +1,28 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the SecondPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { FirstPage } from '../first/first';
 
 @IonicPage()
 @Component({
   selector: 'page-second',
   templateUrl: 'second.html',
 })
+
 export class SecondPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+	constructor(public navCtrl: NavController, public navParams: NavParams, private platform: Platform) {
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SecondPage');
-  }
+		platform.registerBackButtonAction(function(event){
+			console.log('Prevent Back Button Page Change');
+		}, 101); // Priority 101 will override back button handling (we set in app.component.ts) as it is bigger then priority 100 configured in app.component.ts file 
+	}
 
+	ionViewDidLoad() {
+		console.log('SecondPage loaded!');
+	}
+
+	backToPreviousPage(event) {
+	    this.navCtrl.setRoot(FirstPage);
+	    this.navCtrl.popToRoot();   
+	} 	
 }

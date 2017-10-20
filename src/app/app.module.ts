@@ -5,21 +5,27 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+import { FirstPage } from '../pages/first/first';
+import { SecondPage } from '../pages/second/second';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    FirstPage,
+    SecondPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp, {
+      /* Prevent hardware back button from closing the application [true = can close | false = cannot close] */
+      navExitApp: false
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    FirstPage,
+    SecondPage
   ],
   providers: [
     StatusBar,
