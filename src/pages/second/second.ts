@@ -14,6 +14,7 @@ export class SecondPage {
 
 		platform.registerBackButtonAction(function(event){
 			console.log('Prevent Back Button Page Change');
+			// Maybe I need to do event.preventDefault();
 		}, 101); // Priority 101 will override back button handling (we set in app.component.ts) as it is bigger then priority 100 configured in app.component.ts file 
 	}
 
