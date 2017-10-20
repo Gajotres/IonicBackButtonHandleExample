@@ -10,7 +10,7 @@ import { FirstPage } from '../first/first';
 
 export class SecondPage {
 
-	constructor(public navCtrl: NavController, public navParams: NavParams, private platform: Platform) {
+	constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform) {
 
 		platform.registerBackButtonAction(function(event){
 			console.log('Prevent Back Button Page Change');

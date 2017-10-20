@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { App, Platform, AlertController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -10,20 +10,16 @@ import { FirstPage } from '../pages/first/first';
 export class MyApp {
     rootPage:any = FirstPage;
 
-    constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+    constructor(public platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public  app: App, public alertCtrl: AlertController) {
         platform.ready().then(() => {
             statusBar.styleDefault();
             splashScreen.hide();
 
-            platform.registerBackButtonAction(function(event){
-                console.log("Back button pressed!");
-
+            platform.registerBackButtonAction(() => {
                 let nav = this.app.getActiveNav();
-
-                if (nav.canGoBack()){ // We can go back so go back
+                if (nav.canGoBack()){ //Can we go back?
                     nav.pop();
                 } else {
-
                     const alert = this.alertCtrl.create({
                         title: 'Confirm purchase',
                         message: 'Do you want to buy this book?',
@@ -42,7 +38,7 @@ export class MyApp {
                     });
                     alert.present();
                 }
-            }, 100);      
+            });
         });
     }
 }

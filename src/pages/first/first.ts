@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 
 import { SecondPage } from '../second/second';
 
@@ -10,7 +10,7 @@ import { SecondPage } from '../second/second';
 
 export class FirstPage {
 
-	constructor(public navCtrl: NavController, private alertCtrl: AlertController) {
+	constructor(public navCtrl: NavController) {
 
 	}
 
