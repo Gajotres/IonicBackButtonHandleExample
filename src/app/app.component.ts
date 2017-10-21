@@ -22,14 +22,12 @@ export class MyApp {
 
                 if(activeView.name === "FirstPage") {
 
-                    console.log('Trigger');
-
                     if (nav.canGoBack()){ //Can we go back?
                         nav.pop();
                     } else {
                         const alert = this.alertCtrl.create({
-                            title: 'Confirm purchase',
-                            message: 'Do you want to buy this book?',
+                            title: 'App termination',
+                            message: 'Do you want to close the app?',
                             buttons: [{
                                 text: 'Cancel',
                                 role: 'cancel',
