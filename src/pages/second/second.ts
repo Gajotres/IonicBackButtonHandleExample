@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
-import { FirstPage } from '../first/first';
 
 @IonicPage()
 @Component({
@@ -10,20 +9,25 @@ import { FirstPage } from '../first/first';
 
 export class SecondPage {
 
+    // Property used to store the callback of the event handler to unsubscribe to it when leaving this page
+    public unregisterBackButtonAction: any;
+
 	constructor(public navCtrl: NavController, public navParams: NavParams, public platform: Platform) {
 
-		platform.registerBackButtonAction(function(event){
-			console.log('Prevent Back Button Page Change');
-			// Maybe I need to do event.preventDefault();
-		}, 101); // Priority 101 will override back button handling (we set in app.component.ts) as it is bigger then priority 100 configured in app.component.ts file 
 	}
 
 	ionViewDidLoad() {
-		console.log('SecondPage loaded!');
+		this.initializeBackButtonCustomHandler();
 	}
 
-	backToPreviousPage(event) {
-	    this.navCtrl.setRoot(FirstPage);
-	    this.navCtrl.popToRoot();   
-	} 	
+    ionViewWillLeave() {
+        // Unregister the custom back button action for this page
+        this.unregisterBackButtonAction && this.unregisterBackButtonAction();
+    }
+
+    initializeBackButtonCustomHandler(): void {
+		this.unregisterBackButtonAction = this.platform.registerBackButtonAction(function(event){
+			console.log('Prevent Back Button Page Change');
+		}, 101); // Priority 101 will override back button handling (we set in app.component.ts) as it is bigger then priority 100 configured in app.component.ts file */
+    }    	
 }

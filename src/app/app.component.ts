@@ -16,27 +16,35 @@ export class MyApp {
             splashScreen.hide();
 
             platform.registerBackButtonAction(() => {
-                let nav = this.app.getActiveNav();
-                if (nav.canGoBack()){ //Can we go back?
-                    nav.pop();
-                } else {
-                    const alert = this.alertCtrl.create({
-                        title: 'Confirm purchase',
-                        message: 'Do you want to buy this book?',
-                        buttons: [{
-                            text: 'Cancel',
-                            role: 'cancel',
-                            handler: () => {
-                                console.log('Application exit prevented!');
-                            }
-                        },{
-                            text: 'Close App',
-                            handler: () => {
-                                this.platform.exitApp(); // Close this application
-                            }
-                        }]
-                    });
-                    alert.present();
+
+                let nav = app.getActiveNavs()[0];
+                let activeView = nav.getActive();                
+
+                if(activeView.name === "FirstPage") {
+
+                    console.log('Trigger');
+
+                    if (nav.canGoBack()){ //Can we go back?
+                        nav.pop();
+                    } else {
+                        const alert = this.alertCtrl.create({
+                            title: 'Confirm purchase',
+                            message: 'Do you want to buy this book?',
+                            buttons: [{
+                                text: 'Cancel',
+                                role: 'cancel',
+                                handler: () => {
+                                    console.log('Application exit prevented!');
+                                }
+                            },{
+                                text: 'Close App',
+                                handler: () => {
+                                    this.platform.exitApp(); // Close this application
+                                }
+                            }]
+                        });
+                        alert.present();
+                    }
                 }
             });
         });
