@@ -1,4 +1,4 @@
-### This is a Ionic 2|3 tutorial example made for http://www.gajotres.net/ionic-2-making-rest-http-requests-like-a-pro/
+### This is a Ionic 2|3 tutorial example made for https://www.gajotres.net/ionic-2-3-how-to-manage-hardware-back-button-event-like-a-pro
 
 Follow these instruction to deploy this example:
 
